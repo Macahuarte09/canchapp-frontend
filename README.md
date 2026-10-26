@@ -1,16 +1,59 @@
-# React + Vite
+# CanchApp - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Parte visual de CanchApp, una app para reservar turnos de canchas de pádel y pelota paleta. Hecha como trabajo final para la Práctica Supervisada (PPS).
 
-Currently, two official plugins are available:
+Consume la API que está en el repositorio del backend: https://github.com/Macahuarte09/canchapp-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Links
 
-## React Compiler
+- App desplegada: https://canchapp-blue.vercel.app
+- API: https://canchapp-158d.vercel.app/api
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Qué usé
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- React Router (para moverse entre pantallas)
+- Axios (para hacer las llamadas a la API)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pantallas
+
+- **Login** y **Registro**
+- **Inicio**: saluda al usuario y muestra sus próximas reservas
+- **Canchas**: lista de canchas disponibles con su precio por hora
+- **Reservar**: formulario para elegir cancha, fecha y horario
+- **Mis reservas**: lista de reservas con opción de cancelarlas
+
+## Carpetas
+
+```
+src/
+├── components/   ← Navbar
+├── pages/        ← las pantallas
+├── utils/        ← auth.js (lee los datos del usuario desde el token)
+├── App.jsx       ← las rutas de la app
+└── main.jsx
+```
+
+## Cómo correrlo en tu compu
+
+Necesitás tener instalado Node.js.
+
+```bash
+git clone https://github.com/Macahuarte09/canchapp-frontend.git
+cd canchapp-frontend
+npm install
+npm run dev
+```
+
+Se abre en http://localhost:5173
+
+## Conexión con la API
+
+Por defecto el frontend usa la API que está en Vercel. La dirección está en la constante `API` que está arriba de cada archivo de `src/pages/`.
+
+Para probarlo con el backend local (que corre en `http://localhost:3000`), cambiá esa constante por `/api`. Vite ya redirige esas llamadas al backend (está configurado en `vite.config.js`).
+
+## Deploy
+
+Está subido a Vercel. El archivo `vercel.json` sirve para que funcionen las rutas de React Router al recargar la página.
