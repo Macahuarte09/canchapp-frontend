@@ -14,7 +14,7 @@ function Register() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('https://canchapp-158d.vercel.app/api/usuarios/register', { nombre, email, password, telefono });
+      await axios.post('https://canchapp-backend-4cdk-red.vercel.app/api/usuarios/register', { nombre, email, password, telefono });
       navigate('/');
     } catch (err) {
       console.error('Error al registrarse:', err.response?.data || err.message);

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getUsuarioId } from '../utils/auth';
 
-const API = 'https://canchapp-158d.vercel.app/api';
+const API = 'https://canchapp-backend-4cdk-red.vercel.app/api';
 const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 
 function Reservas() {

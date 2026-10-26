@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('https://canchapp-158d.vercel.app/api/usuarios/login', { email, password });
+      const res = await axios.post('https://canchapp-backend-4cdk-red.vercel.app/api/usuarios/login', { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/inicio');
     } catch {

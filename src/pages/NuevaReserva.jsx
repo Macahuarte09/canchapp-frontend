@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getUsuarioId } from '../utils/auth';
 
-const API = 'https://canchapp-158d.vercel.app/api';
+const API = 'https://canchapp-backend-4cdk-red.vercel.app/api';
 
 function NuevaReserva() {
   const location = useLocation();

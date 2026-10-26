@@ -7,7 +7,7 @@ Consume la API que está en el repositorio del backend: https://github.com/Macah
 ## Links
 
 - App desplegada: https://canchapp-blue.vercel.app
-- API: https://canchapp-158d.vercel.app/api
+- API: https://canchapp-backend-4cdk-red.vercel.app/api
 
 ## Qué usé
 

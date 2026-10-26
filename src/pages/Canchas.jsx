@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-const API = 'https://canchapp-158d.vercel.app/api';
+const API = 'https://canchapp-backend-4cdk-red.vercel.app/api';
 const TIPOS = { padel: 'Pádel', pelota_paleta: 'Pelota paleta' };
 
 function Canchas() {
