@@ -16,6 +16,7 @@ function Navbar() {
           <NavLink to="/inicio">Inicio</NavLink>
           <NavLink to="/canchas">Canchas</NavLink>
           <NavLink to="/reservas">Mis reservas</NavLink>
+          <NavLink to="/admin/canchas">Administrar</NavLink>
           <button className="link-btn" onClick={salir}>Salir</button>
         </nav>
       </div>

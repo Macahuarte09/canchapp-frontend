@@ -115,3 +115,4 @@ input:focus, select:focus { border-color: var(--court); }
 .btn-grande { font-size: 1.15rem; padding: 14px 28px; margin-top: 22px; }
 .seccion-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
 .seccion-head .link-btn { color: var(--court); font-weight: 600; }
+ .msg-ok { background: #dcf3e4; color: #1b6a3a; }

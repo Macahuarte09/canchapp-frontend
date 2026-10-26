@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AdminCanchas from './pages/AdminCanchas';
 import Canchas from './pages/Canchas';
 import Reservas from './pages/Reservas';
 import NuevaReserva from './pages/NuevaReserva';
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/inicio" element={<Inicio />} />
+        <Route path="/admin/canchas" element={<AdminCanchas />} />
         <Route path="/canchas" element={<Canchas />} />
         <Route path="/reservar" element={<NuevaReserva />} />
         <Route path="/reservas" element={<Reservas />} />
