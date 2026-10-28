@@ -6,7 +6,6 @@ import Navbar from '../components/Navbar';
 const API = 'https://canchapp-backend-4cdk-red.vercel.app/api';
 const TIPOS = { padel: 'Pádel', pelota_paleta: 'Pelota paleta' };
 
-// Trae todas las canchas de la API
 const traerCanchas = () => axios.get(`${API}/canchas`).then((res) => res.data);
 
 function AdminCanchas() {
@@ -16,6 +15,10 @@ function AdminCanchas() {
   const [precio, setPrecio] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
+  const [canchaEditando, setCanchaEditando] = useState(null);
+  const [nombreEdit, setNombreEdit] = useState('');
+  const [tipoEdit, setTipoEdit] = useState('padel');
+  const [precioEdit, setPrecioEdit] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,13 +66,38 @@ function AdminCanchas() {
     }
   };
 
+  const handleEditar = (cancha) => {
+    setCanchaEditando(cancha.id);
+    setNombreEdit(cancha.nombre);
+    setTipoEdit(cancha.tipo);
+    setPrecioEdit(cancha.precio_por_hora);
+  };
+
+  const handleGuardarEdicion = async (id) => {
+    setMensaje('');
+    setError('');
+    try {
+      await axios.put(`${API}/canchas/${id}`, {
+        nombre: nombreEdit,
+        tipo: tipoEdit,
+        precio_por_hora: Number(precioEdit),
+        activa: true
+      });
+      setMensaje('Cancha actualizada.');
+      setCanchaEditando(null);
+      setCanchas(await traerCanchas());
+    } catch (err) {
+      setError('No se pudo actualizar la cancha.');
+    }
+  };
+
   return (
     <>
       <Navbar />
       <main className="page">
         <div className="page-head">
           <h2>Administrar canchas</h2>
-          <p>Agregá canchas nuevas o eliminá las que ya no uses.</p>
+          <p>Agregá, editá o eliminá las canchas.</p>
         </div>
 
         <div className="panel" style={{ marginBottom: '28px' }}>
@@ -104,16 +132,30 @@ function AdminCanchas() {
         <div className="reservas">
           {canchas.map((c) => (
             <article key={c.id} className="reserva">
-              <div className="reserva-info">
-                <h3>{c.nombre}</h3>
-                <p>
-                  {TIPOS[c.tipo] || c.tipo} · ${Number(c.precio_por_hora).toLocaleString('es-AR')}/hora
-                </p>
-              </div>
-              <div className="reserva-acciones">
-                {c.activa === 0 && <span className="badge badge-cancelada">inactiva</span>}
-                <button className="btn btn-outline" onClick={() => handleEliminar(c)}>Eliminar</button>
-              </div>
+              {canchaEditando === c.id ? (
+                <div className="reserva-info">
+                  <input type="text" value={nombreEdit} onChange={(e) => setNombreEdit(e.target.value)} />
+                  <select value={tipoEdit} onChange={(e) => setTipoEdit(e.target.value)}>
+                    <option value="padel">Pádel</option>
+                    <option value="pelota_paleta">Pelota paleta</option>
+                  </select>
+                  <input type="number" value={precioEdit} onChange={(e) => setPrecioEdit(e.target.value)} />
+                  <button className="btn" onClick={() => handleGuardarEdicion(c.id)}>Guardar</button>
+                  <button className="btn btn-outline" onClick={() => setCanchaEditando(null)}>Cancelar</button>
+                </div>
+              ) : (
+                <>
+                  <div className="reserva-info">
+                    <h3>{c.nombre}</h3>
+                    <p>{TIPOS[c.tipo] || c.tipo} · ${Number(c.precio_por_hora).toLocaleString('es-AR')}/hora</p>
+                  </div>
+                  <div className="reserva-acciones">
+                    {c.activa === 0 && <span className="badge badge-cancelada">inactiva</span>}
+                    <button className="btn btn-outline" onClick={() => handleEditar(c)}>Editar</button>
+                    <button className="btn btn-outline" onClick={() => handleEliminar(c)}>Eliminar</button>
+                  </div>
+                </>
+              )}
             </article>
           ))}
         </div>
